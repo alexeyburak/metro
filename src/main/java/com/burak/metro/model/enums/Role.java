@@ -6,6 +6,6 @@ package com.burak.metro.model.enums;
  * Nov 2022
  */
 
-public enum Roles {
+public enum Role {
     USER, ADMIN
 }

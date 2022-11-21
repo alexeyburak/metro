@@ -10,7 +10,7 @@
           rel="stylesheet">
 </head>
 <body>
-<form th:action="@{/registration}" method="POST">
+<form th:action="@{/registration}" method="POST" th:object="${user}">
     <main>
         <div class="register_container">
             <div class="logo">
@@ -27,15 +27,15 @@
                 Join Metro!
             </div>
             <div class="text-field text-field_floating">
-                <input class="text-field__input" type="text" id="email" placeholder="Username" maxlength="20">
+                <input class="text-field__input" th:field="*{username}" type="text" id="email" placeholder="Username" maxlength="20">
                 <label class="text-field__label" for="email">Username</label>
             </div>
             <div class="text-field text-field_floating">
-                <input class="text-field__input" type="password" id="password" placeholder="Password">
+                <input class="text-field__input" th:field="*{password}" type="password" id="password" placeholder="Password">
                 <label class="text-field__label" for="email">Password</label>
             </div>
             <div class="text-field text-field_floating">
-                <input class="text-field__input" type="password" id="confirm" placeholder="Confirm password">
+                <input class="text-field__input" th:field="*{confirmPassword}" type="password" id="confirm" placeholder="Confirm password">
                 <label class="text-field__label" for="email">Confirm password</label>
             </div>
             <div class="form_buttons">
