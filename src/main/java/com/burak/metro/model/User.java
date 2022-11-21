@@ -21,7 +21,9 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 public class User extends IdentifiedModel {
 
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
 
 }
