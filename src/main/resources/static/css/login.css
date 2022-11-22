@@ -36,16 +36,15 @@ input:focus {
     width: 600px;
     height: auto;
 
-    animation-name:fadeForm;
-    animation-duration:1s;
-    animation-timing-function:ease-in-out;
-    animation-delay:0s;
-    animation-iteration-count:1;
-    animation-fill-mode:forwards;
+    animation-name: fadeForm;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
-
-@keyframes fadeForm{
+@keyframes fadeForm {
     0% {
         opacity: 0;
     }
@@ -61,6 +60,17 @@ input:focus {
     100% {
         opacity: 1;
     }
+}
+
+.error_message {
+    font-family: 'Montserrat', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 5%;
+    color: rgba(171, 0, 0, 0.85);
+    user-select: none;
 }
 
 .form_title {
@@ -83,7 +93,7 @@ input:focus {
     text-align: center;
     letter-spacing: -0.022em;
     margin-left: 87px;
-    margin-top: 100px;
+    margin-top: 5%;
     color: #000000;
     cursor: pointer;
     width: 426px;
@@ -110,6 +120,7 @@ input:focus {
     text-align: center;
     letter-spacing: -0.022em;
     color: #DCD9D9;
+    user-select: none;
 }
 
 .not_account_link:link {
@@ -175,7 +186,7 @@ input:focus {
     margin-left: 87px;
     background: #ffffff;
     border-radius: 6px;
-    left: calc(50% - 425px/2 - 2px);
+    left: calc(50% - 425px / 2 - 2px);
 }
 
 .text-field__input[type="search"]::-webkit-search-decoration,
@@ -231,8 +242,8 @@ input:focus {
     padding-bottom: .625rem;
 }
 
-.text-field_floating .text-field__input:focus~.text-field__label,
-.text-field_floating .text-field__input:not(:placeholder-shown)~.text-field__label {
+.text-field_floating .text-field__input:focus ~ .text-field__label,
+.text-field_floating .text-field__input:not(:placeholder-shown) ~ .text-field__label {
     opacity: .65;
     transform: scale(.85) translateY(-.75rem) translateX(.15rem);
 }

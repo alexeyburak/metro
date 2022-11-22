@@ -27,7 +27,7 @@
                 Join Metro!
             </div>
             <div class="text-field text-field_floating">
-                <input class="text-field__input" th:field="*{username}" type="text" id="email" placeholder="Username" maxlength="20">
+                <input autofocus class="text-field__input" th:field="*{username}" type="text" id="email" placeholder="Username" maxlength="20">
                 <label class="text-field__label" for="email">Username</label>
             </div>
             <div class="text-field text-field_floating">
@@ -37,6 +37,9 @@
             <div class="text-field text-field_floating">
                 <input class="text-field__input" th:field="*{confirmPassword}" type="password" id="confirm" placeholder="Confirm password">
                 <label class="text-field__label" for="email">Confirm password</label>
+            </div>
+            <div class="error_message" th:if="${errorMessage}">
+                <p th:utext="${errorMessage}">Error message</p>
             </div>
             <div class="form_buttons">
                 <input type="submit" value="SignUp" class="button"/>

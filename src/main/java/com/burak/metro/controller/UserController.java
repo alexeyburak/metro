@@ -40,7 +40,7 @@ public class UserController {
         User userDb = this.modelMapper.map(user, User.class);
 
         if (!userService.addUserToDatabase(userDb)) {
-            model.addAttribute("errorMessage", "User with email is already exists");
+            model.addAttribute("errorMessage", "User with username is already exists");
             return "registration";
         }
         return "redirect:/login";
