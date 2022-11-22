@@ -1,0 +1,117 @@
+.footer {
+    margin-top: 160px;
+    padding: 100px;
+    background-color: #000000;
+}
+
+.footer_img {
+    margin-left: 210px;
+}
+
+.footer_description {
+    text-align: left;
+    margin-left: 265px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 13px;
+}
+
+.footer_links {
+    vertical-align: middle;
+    width: 130px;
+    height: 21px;
+    font-family: 'Source Sans Pro', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+}
+
+.footer_mail_text {
+    margin-left: 10px;
+    font-family: 'Source Sans Pro', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+}
+
+.footer_mail {
+    display: inline-block;
+}
+
+.copyright_text {
+    display: inline-block;
+}
+
+.copyright {
+    margin-top: 80px;
+    margin-left: 300px;
+}
+
+.copyright_year {
+    margin-left: 180px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+}
+
+.copyright_github {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+}
+
+.footer_links_text:link {
+    color: #eeeded;
+    text-decoration: none;
+}
+
+.footer_links_text:visited {
+    color: #eeeded;
+    text-decoration: none;
+}
+
+.footer_links_text:hover {
+    color: #b0b0b0;
+    text-decoration: none;
+}
+
+.footer_links_text:active {
+    color: #b0b0b0;
+    text-decoration: none;
+}
+
+.copyright_github_text:link {
+    color: #302DF4;
+    text-decoration: none;
+}
+
+.copyright_github_text:visited {
+    color: #302DF4;
+    text-decoration: none;
+}
+
+.copyright_github_text:hover {
+    color: #2220ad;
+    text-decoration: none;
+}
+
+.copyright_github_text:active {
+    color: #2220ad;
+    text-decoration: none;
+}
