@@ -11,7 +11,22 @@ import com.burak.metro.model.RedLine;
  */
 
 public interface LineService {
+    /**
+     * <p>Search for the red metro line by the current time</p>
+     * @return instance of RedLine class
+     * @since 1.0
+     */
     RedLine getRedLineByCurrentTime();
+    /**
+     * <p>Search for the green metro line by the current time</p>
+     * @return instance of GreenLine class
+     * @since 1.0
+     */
     GreenLine getGreenLineByCurrentTime();
+    /**
+     * <p>Search for the blue metro line by the current time</p>
+     * @return instance of BlueLine class
+     * @since 1.0
+     */
     BlueLine getBlueLineByCurrentTime();
 }

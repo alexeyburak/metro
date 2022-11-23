@@ -10,7 +10,12 @@ import com.burak.metro.model.User;
 
 public interface UserService {
 
-    // Save user to database after registration
+    /**
+     * <p>Save user to database after registration</p>
+     * @param user the user to be added to the database
+     * @return boolean operator which shows whether the save was made successfully
+     * @since 1.0
+     */
     boolean addUserToDatabase(User user);
 
 }
