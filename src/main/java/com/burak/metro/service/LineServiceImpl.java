@@ -30,77 +30,59 @@ public class LineServiceImpl implements LineService, CurrentTimeIntervalService 
     private final GreenLineRepository greenLineRepository;
     private final RedLineRepository redLineRepository;
 
-    private int getDayNumberNew() {
+    private int getNumberOfDayInWeek() {
         DayOfWeek day = LocalDate.now().getDayOfWeek();
         return day.getValue();
     }
 
     @Override
     public Double getRedLineCurrentTimeInterval() {
-        switch (getDayNumberNew()) {
-            case 1, 2, 3, 4:
-                return redLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "working_days_interval")
-                        .getWorkingDaysInterval();
-            case 5:
-                return redLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "friday_days_interval")
-                        .getFridayDaysInterval();
-            case 6, 7:
-                return redLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "weekends_days_interval")
-                        .getWeekendsDaysInterval();
-        }
-        log.info("Get red line time");
-        return null;
+        return switch (getNumberOfDayInWeek()) {
+            // MONDAY, TUESDAY, WEDNESDAY, THURSDAY
+            case 1, 2, 3, 4 -> this.getRedLineByCurrentTime()
+                    .getWorkingDaysInterval();
+            // FRIDAY
+            case 5 -> this.getRedLineByCurrentTime()
+                    .getFridayDaysInterval();
+            // SATURDAY, SUNDAY
+            case 6, 7 -> this.getRedLineByCurrentTime()
+                    .getWeekendsDaysInterval();
+            default -> null;
+        };
     }
 
     @Override
     public Double getGreenLineCurrentTimeInterval() {
-        switch (getDayNumberNew()) {
-            case 1, 2, 3, 4, 5:
-                return greenLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "working_days_interval")
-                        .getWorkingDaysInterval();
-            case 6, 7:
-                return greenLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "weekends_days_interval")
-                        .getWeekendsDaysInterval();
-        }
-        log.info("Get green line time");
-        return null;
+        return switch (getNumberOfDayInWeek()) {
+            // MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY
+            case 1, 2, 3, 4, 5 -> this.getGreenLineByCurrentTime()
+                    .getWorkingDaysInterval();
+            // SATURDAY, SUNDAY
+            case 6, 7 -> this.getGreenLineByCurrentTime()
+                    .getWeekendsDaysInterval();
+            default -> null;
+        };
     }
 
     @Override
     public Double getBlueLineCurrentTimeInterval() {
-        switch (getDayNumberNew()) {
-            case 1, 2, 3, 4:
-                return blueLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "working_days_interval")
-                        .getWorkingDaysInterval();
-            case 5:
-                return blueLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "friday_days_interval")
-                        .getFridayDaysInterval();
-            case 6, 7:
-                return blueLineRepository
-                        .findTimeIntervalByDayOfWeek(LocalTime.now(),
-                                "weekends_days_interval")
-                        .getWeekendsDaysInterval();
-        }
-        log.info("Get blue line time");
-        return null;
+        return switch (getNumberOfDayInWeek()) {
+            // MONDAY, TUESDAY, WEDNESDAY, THURSDAY
+            case 1, 2, 3, 4 -> this.getBlueLineByCurrentTime()
+                    .getWorkingDaysInterval();
+            // FRIDAY
+            case 5 -> this.getRedLineByCurrentTime()
+                    .getFridayDaysInterval();
+            // SATURDAY, SUNDAY
+            case 6, 7 -> this.getRedLineByCurrentTime()
+                    .getWeekendsDaysInterval();
+            default -> null;
+        };
     }
 
     @Override
     public RedLine getRedLineByCurrentTime() {
+        log.info("Get RED LINE time");
         return redLineRepository
                 .findLineByCurrentTime(LocalTime
                         .now());
@@ -108,6 +90,7 @@ public class LineServiceImpl implements LineService, CurrentTimeIntervalService 
 
     @Override
     public GreenLine getGreenLineByCurrentTime() {
+        log.info("Get GREEN LINE time");
         return greenLineRepository
                 .findLineByCurrentTime(LocalTime
                         .now());
@@ -115,6 +98,7 @@ public class LineServiceImpl implements LineService, CurrentTimeIntervalService 
 
     @Override
     public BlueLine getBlueLineByCurrentTime() {
+        log.info("Get BLUE LINE time");
         return blueLineRepository
                 .findLineByCurrentTime(LocalTime
                         .now());

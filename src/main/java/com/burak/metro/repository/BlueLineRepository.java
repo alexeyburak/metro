@@ -13,10 +13,6 @@ import java.time.LocalTime;
  */
 
 public interface BlueLineRepository extends JpaRepository<BlueLine, Long> {
-
-    @Query(value = "SELECT ?2, full_time_interval_id FROM blue_line WHERE ?1 BETWEEN beginning_time_period AND end_time_period",
-            nativeQuery = true)
-    BlueLine findTimeIntervalByDayOfWeek(LocalTime now, String dayOfWeek);
     @Query(value = "SELECT * FROM blue_line WHERE ?1 BETWEEN beginning_time_period AND end_time_period",
             nativeQuery = true)
     BlueLine findLineByCurrentTime(LocalTime now);
