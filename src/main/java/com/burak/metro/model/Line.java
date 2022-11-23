@@ -31,4 +31,8 @@ abstract class Line extends IdentifiedModel {
     @Column(name = "weekends_days_interval")
     protected Double weekendsDaysInterval;
 
+    public Integer getFullTimeInterval() {
+        return fullTimeIntervalId.getFullTimeInterval();
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.burak.metro.controller;
 
-import com.burak.metro.model.RedLine;
 import com.burak.metro.service.LineServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,24 +22,31 @@ public class LineController {
 
     @GetMapping("/red")
     public String redLineInfo(Model model) {
-        model.addAttribute("title", "Aŭtazavadskaja line");
-        Double timeInterval = lineService.getRedLineByCurrentTime().getFridayDaysInterval();
-        RedLine all_time = lineService.getRedLineByCurrentTime();
-
-        model.addAttribute("time_interval", String.valueOf(timeInterval));
-        model.addAttribute("all_time", String.valueOf(all_time.getFullTimeIntervalId().getFullTimeInterval()));
+        String RED_LINE_TITLE = "Aŭtazavadskaja line";
+        model.addAttribute("title", RED_LINE_TITLE);
+        Double redLineCurrentTimeInterval = lineService.getRedLineCurrentTimeInterval();
+        model.addAttribute("time_interval", redLineCurrentTimeInterval);
+        model.addAttribute("all_time_interval", lineService.getRedLineByCurrentTime().getFullTimeInterval());
         return "line-info";
     }
 
     @GetMapping("/blue")
     public String blueLineInfo(Model model) {
-        model.addAttribute("title", "Maskoŭskaja line");
+        String BLUE_LINE_TITLE = "Maskoŭskaja line";
+        model.addAttribute("title", BLUE_LINE_TITLE);
+        Double blueLineCurrentTimeInterval = lineService.getBlueLineCurrentTimeInterval();
+        model.addAttribute("time_interval", blueLineCurrentTimeInterval);
+        model.addAttribute("all_time_interval", lineService.getBlueLineByCurrentTime().getFullTimeInterval());
         return "line-info";
     }
 
     @GetMapping("/green")
     public String greenLineInfo(Model model) {
-        model.addAttribute("title", "Zielienalužskaja line");
+        String GREEN_LINE_TITLE = "Zielienalužskaja line";
+        model.addAttribute("title", GREEN_LINE_TITLE);
+        Double greenLineCurrentTimeInterval = lineService.getGreenLineCurrentTimeInterval();
+        model.addAttribute("time_interval", greenLineCurrentTimeInterval);
+        model.addAttribute("all_time_interval", lineService.getGreenLineByCurrentTime().getFullTimeInterval());
         return "line-info";
     }
 }

@@ -13,6 +13,9 @@ import java.time.LocalTime;
  */
 
 public interface RedLineRepository extends JpaRepository<RedLine, Long> {
+    @Query(value = "SELECT ?2, full_time_interval_id FROM red_line WHERE ?1 BETWEEN beginning_time_period AND end_time_period",
+            nativeQuery = true)
+    RedLine findTimeIntervalByDayOfWeek(LocalTime now, String dayOfWeek);
     @Query(value = "SELECT * FROM red_line WHERE ?1 BETWEEN beginning_time_period AND end_time_period",
             nativeQuery = true)
     RedLine findLineByCurrentTime(LocalTime now);
