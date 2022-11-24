@@ -30,53 +30,44 @@ public class LineServiceImpl implements LineService, CurrentTimeIntervalService 
     private final GreenLineRepository greenLineRepository;
     private final RedLineRepository redLineRepository;
 
-    private int getNumberOfDayInWeek() {
-        DayOfWeek day = LocalDate.now().getDayOfWeek();
-        return day.getValue();
+    private DayOfWeek getNameOfDayWeek() {
+        return DayOfWeek.valueOf(LocalDate
+                .now()
+                .getDayOfWeek()
+                .name());
     }
 
     @Override
     public Double getRedLineCurrentTimeInterval() {
-        return switch (getNumberOfDayInWeek()) {
-            // MONDAY, TUESDAY, WEDNESDAY, THURSDAY
-            case 1, 2, 3, 4 -> this.getRedLineByCurrentTime()
+        return switch (getNameOfDayWeek()) {
+            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY -> this.getRedLineByCurrentTime()
                     .getWorkingDaysInterval();
-            // FRIDAY
-            case 5 -> this.getRedLineByCurrentTime()
+            case FRIDAY -> this.getRedLineByCurrentTime()
                     .getFridayDaysInterval();
-            // SATURDAY, SUNDAY
-            case 6, 7 -> this.getRedLineByCurrentTime()
+            case SATURDAY, SUNDAY -> this.getRedLineByCurrentTime()
                     .getWeekendsDaysInterval();
-            default -> null;
         };
     }
 
     @Override
     public Double getGreenLineCurrentTimeInterval() {
-        return switch (getNumberOfDayInWeek()) {
-            // MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY
-            case 1, 2, 3, 4, 5 -> this.getGreenLineByCurrentTime()
+        return switch (getNameOfDayWeek()) {
+            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -> this.getGreenLineByCurrentTime()
                     .getWorkingDaysInterval();
-            // SATURDAY, SUNDAY
-            case 6, 7 -> this.getGreenLineByCurrentTime()
+            case SATURDAY, SUNDAY -> this.getGreenLineByCurrentTime()
                     .getWeekendsDaysInterval();
-            default -> null;
         };
     }
 
     @Override
     public Double getBlueLineCurrentTimeInterval() {
-        return switch (getNumberOfDayInWeek()) {
-            // MONDAY, TUESDAY, WEDNESDAY, THURSDAY
-            case 1, 2, 3, 4 -> this.getBlueLineByCurrentTime()
+        return switch (getNameOfDayWeek()) {
+            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY -> this.getBlueLineByCurrentTime()
                     .getWorkingDaysInterval();
-            // FRIDAY
-            case 5 -> this.getRedLineByCurrentTime()
+            case FRIDAY -> this.getRedLineByCurrentTime()
                     .getFridayDaysInterval();
-            // SATURDAY, SUNDAY
-            case 6, 7 -> this.getRedLineByCurrentTime()
+            case SATURDAY, SUNDAY -> this.getRedLineByCurrentTime()
                     .getWeekendsDaysInterval();
-            default -> null;
         };
     }
 

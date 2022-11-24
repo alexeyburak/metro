@@ -26,7 +26,8 @@ public class LineController {
         model.addAttribute("title", RED_LINE_TITLE);
         Double redLineCurrentTimeInterval = lineService.getRedLineCurrentTimeInterval();
         model.addAttribute("time_interval", redLineCurrentTimeInterval);
-        model.addAttribute("all_time_interval", lineService.getRedLineByCurrentTime().getFullTimeInterval());
+        Integer allTimeInterval = lineService.getRedLineByCurrentTime().getFullTimeInterval();
+        model.addAttribute("all_time_interval", allTimeInterval);
         return "line-info";
     }
 
@@ -36,7 +37,8 @@ public class LineController {
         model.addAttribute("title", BLUE_LINE_TITLE);
         Double blueLineCurrentTimeInterval = lineService.getBlueLineCurrentTimeInterval();
         model.addAttribute("time_interval", blueLineCurrentTimeInterval);
-        model.addAttribute("all_time_interval", lineService.getBlueLineByCurrentTime().getFullTimeInterval());
+        Integer allTimeInterval = lineService.getBlueLineByCurrentTime().getFullTimeInterval();
+        model.addAttribute("all_time_interval", allTimeInterval);
         return "line-info";
     }
 
@@ -46,7 +48,8 @@ public class LineController {
         model.addAttribute("title", GREEN_LINE_TITLE);
         Double greenLineCurrentTimeInterval = lineService.getGreenLineCurrentTimeInterval();
         model.addAttribute("time_interval", greenLineCurrentTimeInterval);
-        model.addAttribute("all_time_interval", lineService.getGreenLineByCurrentTime().getFullTimeInterval());
+        Integer allTimeInterval = lineService.getGreenLineByCurrentTime().getFullTimeInterval();
+        model.addAttribute("all_time_interval", allTimeInterval);
         return "line-info";
     }
 }
