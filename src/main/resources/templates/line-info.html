@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Metro</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/line-info.css" th:href="@{/css/line-info.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="name">
+            <div th:utext="${title}">Title</div>
+            <div class="description_time_interval">
+                Time interval currently
+                <div class="time">
+                    <div>
+                        <div class="time_info" th:utext="${time_interval}">80.0</div>
+                        <div class="time_info">
+                            minutes
+                        </div>
+                    </div>
+                    <div class="description_all_time">
+                        The travel time of the electric train from the starting station to the final station is
+                        <div>
+                            <div class="time_info" th:utext="${all_time_interval}">2</div>
+                            <div class="time_info">
+                                minutes
+                            </div>
+                        </div>
+                        <div class="back">
+                            <a th:href="@{/}" class="back_link">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

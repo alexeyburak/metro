@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Metro</title>
+    <link rel="stylesheet" href="../static/css/main-window.css" th:href="@{/css/main-window.css}">
+    <link rel="stylesheet" href="../static/css/footer.css" th:href="@{/css/footer.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital@0;1&display=swap" rel="stylesheet">
+    <script>
+        function alertDialog(message) {
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="text">
+        <div class="text_welcome">
+            Welcome to Metro!
+        </div>
+        <div class="text_description">
+            Save time and find out the interval of the metro in your city
+        </div>
+        <div class="choose_line">
+            <div class="line">
+                <img th:src="@{/images/green_ellipse.png}" alt="green_line">
+                <a th:href="@{/lines/green}" class="line_favorite_link">Zielienalužskaja line</a>
+            </div>
+            <div class="line">
+                <img th:src="@{/images/red_ellipse.png}" alt="red_line">
+                <a th:href="@{/lines/red}" class="line_favorite_link">Aŭtazavadskaja line</a>
+            </div>
+            <div class="line">
+                <img th:src="@{/images/blue_ellipse.png}" alt="blue_line">
+                <a th:href="@{/lines/blue}" class="line_favorite_link">Maskoŭskaja line</a>
+            </div>
+            <div class="line">
+                <img th:src="@{/images/gray_ellipse.png}" alt="gray_line">
+                <a href="" class="line_favorite_link"
+                   onclick="alertDialog('At the moment, this branch is under construction.')">Zielienalužskaja
+                    line(perspective)</a>
+            </div>
+            <div class="line_favorite">
+                <a th:href="@{/lines/favorite/}" class="line_favorite_link">Choose favorite line</a>
+            </div>
+        </div>
+    </div>
+    <div class="img">
+        <img th:src="@{/images/metro_map.png}" alt="map">
+    </div>
+    <div class="img_account">
+        <a href="/login"><img th:src="@{/images/account_item.png}" alt="account_image"></a>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>

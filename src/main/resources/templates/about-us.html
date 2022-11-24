@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>About Us</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/about-us.css" th:href="@{/css/about-us.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+</head>
+<body>
+<main>
+    <div class="container">
+        <div class="title">
+            About us
+            <div class="text">
+                We have developed this project in order to make life easier for users,
+                save their time, and inform them about the arrival intervals of transport,
+                in this case, the metro.
+                <div class="back">
+                    <a th:href="@{/}" class="back_link">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

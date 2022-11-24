@@ -1,9 +1,11 @@
 package com.burak.metro.model;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * metro
@@ -13,19 +15,24 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @RequiredArgsConstructor
+@Getter
+@Setter
 abstract class Line extends IdentifiedModel {
 
-    @Column(name = "time")
-    private LocalDateTime time;
+    @Column(name = "beginning_time_period")
+    private LocalTime beginningTimePeriod;
+    @Column(name = "end_time_period")
+    private LocalTime endTimePeriod;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "full_time_interval_id")
+    protected FullTimeInterval fullTimeIntervalId;
     @Column(name = "working_days_interval")
     protected Double workingDaysInterval;
-    @Column(name = "friday_days_interval")
-    protected Double fridayDaysInterval;
-    @Column(name = "sunday_days_interval")
-    protected Double sundayDaysInterval;
-    @Column(name = "saturday_days_interval")
-    protected Double saturdayDaysInterval;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fullTimeInterval")
-    protected FullTimeInterval fullTimeInterval;
+    @Column(name = "weekends_days_interval")
+    protected Double weekendsDaysInterval;
+
+    public Integer getFullTimeInterval() {
+        return fullTimeIntervalId.getFullTimeInterval();
+    }
+
 }
