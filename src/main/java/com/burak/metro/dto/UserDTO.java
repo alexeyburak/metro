@@ -1,6 +1,7 @@
 package com.burak.metro.dto;
 
 import com.burak.metro.annotation.PasswordMatch;
+import com.burak.metro.annotation.PasswordValid;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,8 +22,8 @@ public class UserDTO {
     @Size(min = 3, max = 15, message = "Name must be between 3 and 15 characters")
     @NotBlank(message = "Name is required")
     private String username;
-    @NotBlank(message = "Password is required")
+    @PasswordValid
     private String password;
-    @NotBlank(message = "Password confirm is required")
+    @PasswordValid
     private String confirmPassword;
 }
