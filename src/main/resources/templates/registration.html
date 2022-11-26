@@ -29,14 +29,17 @@
             <div class="text-field text-field_floating">
                 <input autofocus class="text-field__input" th:field="*{username}" type="text" id="email" placeholder="Username" maxlength="20">
                 <label class="text-field__label" for="email">Username</label>
+                <div class="error_message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
             </div>
             <div class="text-field text-field_floating">
                 <input class="text-field__input" th:field="*{password}" type="password" id="password" placeholder="Password">
                 <label class="text-field__label" for="email">Password</label>
+                <div class="error_message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
             </div>
             <div class="text-field text-field_floating">
                 <input class="text-field__input" th:field="*{confirmPassword}" type="password" id="confirm" placeholder="Confirm password">
                 <label class="text-field__label" for="email">Confirm password</label>
+                <div class="error_message" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
             </div>
             <div class="error_message" th:if="${errorMessage}">
                 <p th:utext="${errorMessage}">Error message</p>

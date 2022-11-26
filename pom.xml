@@ -17,6 +17,7 @@
 		<java.version>17</java.version>
 		<modelmapper.version>3.1.0</modelmapper.version>
 		<spring-security-core.version>5.7.5</spring-security-core.version>
+		<passay.version>1.6.2</passay.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -68,6 +69,11 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring-security-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.passay</groupId>
+			<artifactId>passay</artifactId>
+			<version>${passay.version}</version>
 		</dependency>
 	</dependencies>
 

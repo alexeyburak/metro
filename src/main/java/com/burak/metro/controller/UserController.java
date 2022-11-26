@@ -7,9 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 /**
  * metro
@@ -30,10 +33,10 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("user") UserDTO user,
-                             Model model) {
-        if (!user.getPassword().equals(user.getConfirmPassword())) {
-            model.addAttribute("errorMessage", "Passwords do not match");
+    public String registration(@ModelAttribute("user") @Valid UserDTO user,
+                               BindingResult bindingResult,
+                               Model model) {
+        if (bindingResult.hasErrors()) {
             return "registration";
         }
 
