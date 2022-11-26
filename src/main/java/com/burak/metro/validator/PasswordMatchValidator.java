@@ -26,7 +26,8 @@ public class PasswordMatchValidator implements ConstraintValidator<PasswordMatch
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext
                     .buildConstraintViolationWithTemplate("Passwords should match")
-                    .addPropertyNode("confirmPassword").addConstraintViolation();
+                    .addPropertyNode("confirmPassword")
+                    .addConstraintViolation();
         }
         return isUserPasswordMatchingConfirmPassword;
     }

@@ -26,7 +26,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<Password
 
     @SneakyThrows
     @Override
-    public boolean isValid(String password, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(final String password, ConstraintValidatorContext constraintValidatorContext) {
         Properties properties = new Properties();
         InputStream inputStream = getClass()
                 .getClassLoader().getResourceAsStream("passay.properties");

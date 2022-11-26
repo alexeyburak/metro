@@ -2,11 +2,9 @@ package com.burak.metro.dto;
 
 import com.burak.metro.annotation.PasswordMatch;
 import com.burak.metro.annotation.PasswordValid;
+import com.burak.metro.annotation.UsernameValid;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 /**
  * metro
@@ -19,8 +17,7 @@ import javax.validation.constraints.Size;
 @PasswordMatch
 public class UserDTO {
 
-    @Size(min = 3, max = 15, message = "Name must be between 3 and 15 characters")
-    @NotBlank(message = "Name is required")
+    @UsernameValid
     private String username;
     @PasswordValid
     private String password;
