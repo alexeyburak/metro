@@ -25,12 +25,35 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUserToDatabase(User user) {
         String username = user.getUsername();
-        if (userRepository.findByUsername(username) != null) return false;
+        if (userRepository.findByUsername(username) != null)
+            return false;
+
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.USER);
+
         userRepository.save(user);
         log.info("Saving User. Username: {}", username);
         return true;
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository
+                .findById(id)
+                .orElse(null);
+    }
+
+    @Override
+    public void updateUserById(Long id, User userDb) {
+        User user = this.getUserById(id);
+        if (user == null)
+            throw new IllegalStateException("User not found");
+
+        user.setUsername(userDb.getUsername());
+        user.setPassword(passwordEncoder.encode(userDb.getPassword()));
+
+        userRepository.save(user);
+        log.info("Update user. User username: {}", user.getUsername());
     }
 }

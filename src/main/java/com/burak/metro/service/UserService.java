@@ -17,5 +17,19 @@ public interface UserService {
      * @since 1.0
      */
     boolean addUserToDatabase(User user);
+    /**
+     * <p>Search user in database by id</p>
+     * @param id user id which is being searched in the database
+     * @return user from database or else null
+     * @since 1.0
+     */
+    User getUserById(Long id);
+    /**
+     * <p>Update user by id</p>
+     * @param id user id which will change its data
+     * @param userDb new object with changed data
+     * @since 1.0
+     */
+    void updateUserById(Long id, User userDb);
 
 }

@@ -8,9 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -47,6 +45,26 @@ public class UserController {
             return "registration";
         }
         return "redirect:/login";
+    }
+
+    @GetMapping("/users/account/{id}")
+    public String userAccount(@PathVariable("id") Long id,
+                              Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "user-account";
+    }
+
+    @PostMapping("/users/account/{id}")
+    public String userAccount(@PathVariable("id") Long id,
+                              @ModelAttribute("user") @Valid User user,
+                              BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user-account";
+        }
+
+        userService.updateUserById(id, user);
+
+        return "redirect:/";
     }
 
 }
