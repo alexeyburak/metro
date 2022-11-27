@@ -2,6 +2,8 @@ package com.burak.metro.service;
 
 import com.burak.metro.model.User;
 
+import java.security.Principal;
+
 /**
  * metro
  * Created by Alexey Burak
@@ -31,5 +33,12 @@ public interface UserService {
      * @since 1.0
      */
     void updateUserById(Long id, User userDb);
+    /**
+     * <p>Search user by principal</p>
+     * @param principal logged user
+     * @return user or else new User()
+     * @since 1.0
+     */
+    User getUserByPrincipal(Principal principal);
 
 }
