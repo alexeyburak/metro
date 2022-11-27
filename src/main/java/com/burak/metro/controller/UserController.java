@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Objects;
 
 /**
  * metro
@@ -60,7 +61,11 @@ public class UserController {
 
     @GetMapping("/users/account/{id}")
     public String userAccountEdit(@PathVariable("id") Long id,
-                                  Model model) {
+                                  Model model,
+                                  Principal principal) {
+        if (!Objects.equals(id, userService.getUserByPrincipal(principal).getId()))
+            throw new IllegalArgumentException("Access restriction");
+
         model.addAttribute("user", userService.getUserById(id));
         return "user-account-edit";
     }
