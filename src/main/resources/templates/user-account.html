@@ -11,23 +11,30 @@
           rel="stylesheet">
 </head>
 <body>
-<form th:action="@{/users/account/{id}(id=${user.getId()})}" method="POST" th:object="${user}">
-    <main>
-        <div class="register_container">
-            <div class="logo">
-                <div class="image_logo">
-                    <a th:href="@{/}"><img th:src="@{/images/cross.png}"
-                                           alt="Cross"></a>
-                </div>
-                <div class="form_account">
-                    Account
-                </div>
+
+<main>
+    <div class="register_container">
+        <div class="logo">
+            <div class="image_logo">
+                <a th:href="@{/}"><img th:src="@{/images/cross.png}"
+                                       alt="Cross"></a>
             </div>
-            <a th:href="@{/users/account/{id}(id=${user.getId()})}">Edit account</a>
-
-
+            <div class="form_account">
+                Account
+            </div>
         </div>
-    </main>
-</form>
+        <div class="edit_account">
+            <form th:action="@{/users/account/{id}(id=${user.getId()})}" >
+                <input class="edit_account_link" type="submit" value="Edit account"/>
+            </form>
+        </div>
+        <form th:action="@{/users/account/{id}(id=${user.getId()})}" method="POST" th:object="${user}">
+            <div class="edit_account_delete">
+                <input class="edit_account_delete_link" type="submit" value="Delete account"/>
+            </div>
+        </form>
+    </div>
+</main>
+
 </body>
 </html>
