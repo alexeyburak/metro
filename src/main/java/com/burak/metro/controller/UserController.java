@@ -5,6 +5,7 @@ import com.burak.metro.model.User;
 import com.burak.metro.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -85,6 +86,11 @@ public class UserController {
 
     @PostMapping("/users/account/delete/{id}")
     public String userAccountDelete(@PathVariable("id") Long id) {
+        SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .setAuthenticated(false);
+
         userService.deleteUserById(id);
         return "redirect:/";
     }
