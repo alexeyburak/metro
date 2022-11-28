@@ -1,5 +1,7 @@
 package com.burak.metro.model;
 
+import com.burak.metro.annotation.PasswordValid;
+import com.burak.metro.annotation.UsernameValid;
 import com.burak.metro.model.enums.Role;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +30,10 @@ import java.util.Set;
 public class User extends IdentifiedModel implements UserDetails {
 
     @Column(name = "username")
+    @UsernameValid
     private String username;
     @Column(name = "password")
+    @PasswordValid
     private String password;
     @Column(name = "active")
     private boolean active;

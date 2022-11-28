@@ -6,6 +6,7 @@ import org.passay.*;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.constraints.Min;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,6 @@ public class PasswordConstraintValidator implements ConstraintValidator<Password
 
         PasswordValidator passwordValidator = new PasswordValidator(propertiesMessageResolver,
                 Arrays.asList(
-                    new LengthRule(4),
                     new CharacterRule(EnglishCharacterData.LowerCase, 1),
                     new CharacterRule(EnglishCharacterData.Digit, 1),
                     new WhitespaceRule(),

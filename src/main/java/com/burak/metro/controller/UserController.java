@@ -5,14 +5,18 @@ import com.burak.metro.model.User;
 import com.burak.metro.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Objects;
 
 /**
  * metro
@@ -47,6 +51,48 @@ public class UserController {
             return "registration";
         }
         return "redirect:/login";
+    }
+
+    @GetMapping("/users/account")
+    public String userAccount(Model model,
+                              Principal principal) {
+        model.addAttribute("user", userService.getUserByPrincipal(principal));
+        return "user-account";
+    }
+
+    @GetMapping("/users/account/{id}")
+    public String userAccountEdit(@PathVariable("id") Long id,
+                                  Model model,
+                                  Principal principal) {
+        if (!Objects.equals(id, userService.getUserByPrincipal(principal).getId()))
+            return "redirect:/";
+
+        model.addAttribute("user", userService.getUserById(id));
+        return "user-account-edit";
+    }
+
+    @PostMapping("/users/account/{id}")
+    public String userAccountEdit(@PathVariable("id") Long id,
+                                  @ModelAttribute("user") @Valid User user,
+                                  BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "user-account-edit";
+        }
+
+        userService.updateUserById(id, user);
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/users/account/delete/{id}")
+    public String userAccountDelete(@PathVariable("id") Long id) {
+        SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .setAuthenticated(false);
+
+        userService.deleteUserById(id);
+        return "redirect:/";
     }
 
 }
