@@ -28,7 +28,7 @@
                 <input class="edit_account_link" type="submit" value="Edit account"/>
             </form>
         </div>
-        <form th:action="@{/users/account/{id}(id=${user.getId()})}" method="POST" th:object="${user}">
+        <form th:action="@{/users/account/delete/{id}(id=${user.getId()})}" method="POST">
             <div class="edit_account_delete">
                 <input class="edit_account_delete_link" type="submit" value="Delete account"/>
             </div>

@@ -64,4 +64,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         log.info("Update user. User username: {}", user.getUsername());
     }
+
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+        log.warn("Delete user account. User id: {}", id);
+    }
 }

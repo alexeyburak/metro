@@ -40,5 +40,11 @@ public interface UserService {
      * @since 1.0
      */
     User getUserByPrincipal(Principal principal);
+    /**
+     * <p>Delete user from database by id</p>
+     * @param id logged user
+     * @since 1.0
+     */
+    void deleteUserById(Long id);
 
 }

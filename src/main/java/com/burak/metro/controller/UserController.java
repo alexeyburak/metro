@@ -64,7 +64,7 @@ public class UserController {
                                   Model model,
                                   Principal principal) {
         if (!Objects.equals(id, userService.getUserByPrincipal(principal).getId()))
-            throw new IllegalArgumentException("Access restriction");
+            return "redirect:/";
 
         model.addAttribute("user", userService.getUserById(id));
         return "user-account-edit";
@@ -80,6 +80,12 @@ public class UserController {
 
         userService.updateUserById(id, user);
 
+        return "redirect:/";
+    }
+
+    @PostMapping("/users/account/delete/{id}")
+    public String userAccountDelete(@PathVariable("id") Long id) {
+        userService.deleteUserById(id);
         return "redirect:/";
     }
 
