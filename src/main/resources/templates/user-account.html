@@ -9,9 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
           rel="stylesheet">
+    <script>
+        function deleteConfig() {
+            return confirm("Are you sure you want to delete your account?");
+        }
+    </script>
 </head>
 <body>
-
 <main>
     <div class="register_container">
         <div class="logo">
@@ -24,17 +28,17 @@
             </div>
         </div>
         <div class="edit_account">
-            <form th:action="@{/users/account/{id}(id=${user.getId()})}" >
+            <form th:action="@{/users/account/{id}(id=${user.getId()})}">
                 <input class="edit_account_link" type="submit" value="Edit account"/>
             </form>
         </div>
         <form th:action="@{/users/account/delete/{id}(id=${user.getId()})}" method="POST">
             <div class="edit_account_delete">
-                <input class="edit_account_delete_link" type="submit" value="Delete account"/>
+                <input onclick="return deleteConfig()"
+                       class="edit_account_delete_link" type="submit" value="Delete account"/>
             </div>
         </form>
     </div>
 </main>
-
 </body>
 </html>
