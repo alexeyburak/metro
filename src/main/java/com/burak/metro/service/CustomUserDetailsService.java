@@ -1,5 +1,7 @@
 package com.burak.metro.service;
 
+import com.burak.metro.exception.ApiRequestException;
+import com.burak.metro.model.User;
 import com.burak.metro.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +23,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null)
+            throw new UsernameNotFoundException("User not found");
+        if (!user.isActive())
+            throw new ApiRequestException("User was banned");
+
         return userRepository.findByUsername(username);
     }
 }

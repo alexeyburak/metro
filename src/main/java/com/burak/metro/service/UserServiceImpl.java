@@ -1,5 +1,6 @@
 package com.burak.metro.service;
 
+import com.burak.metro.exception.ApiRequestException;
 import com.burak.metro.model.User;
 import com.burak.metro.model.enums.Role;
 import com.burak.metro.repository.UserRepository;
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService {
     public void updateUserById(Long id, User userDb) {
         User user = this.getUserById(id);
         if (user == null)
-            throw new IllegalStateException("User not found");
+            throw new ApiRequestException("User not found");
 
         user.setUsername(userDb.getUsername());
         user.setPassword(passwordEncoder.encode(userDb.getPassword()));
