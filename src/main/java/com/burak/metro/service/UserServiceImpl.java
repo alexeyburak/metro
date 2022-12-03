@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
         log.warn("Delete user account. User id: {}", id);
     }
 
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

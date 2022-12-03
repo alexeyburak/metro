@@ -3,6 +3,7 @@ package com.burak.metro.service;
 import com.burak.metro.model.User;
 
 import java.security.Principal;
+import java.util.List;
 
 /**
  * metro
@@ -46,5 +47,10 @@ public interface UserService {
      * @since 1.0
      */
     void deleteUserById(Long id);
-
+    /**
+     * <p>Get all users in database</p>
+     * @return all users in database
+     * @since 1.0
+     */
+    List<User> getAllUsers();
 }
