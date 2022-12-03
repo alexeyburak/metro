@@ -32,6 +32,11 @@
                 <input class="edit_account_link" type="submit" value="Edit account"/>
             </form>
         </div>
+        <div th:if="${user.isAdmin()}" class="edit_account">
+            <form th:action="@{/admin/}">
+                <input class="edit_account_link" type="submit" value="Admin panel"/>
+            </form>
+        </div>
         <form th:action="@{/users/account/delete/{id}(id=${user.getId()})}" method="POST">
             <div class="edit_account_delete">
                 <input onclick="return deleteConfig()"
