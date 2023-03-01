@@ -14,4 +14,4 @@
 *.iml
 *.ipr
 /target
-*.properties
+application-dev.properties
