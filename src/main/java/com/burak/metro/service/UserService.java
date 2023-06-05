@@ -5,12 +5,6 @@ import com.burak.metro.model.User;
 import java.security.Principal;
 import java.util.List;
 
-/**
- * metro
- * Created by Alexey Burak
- * Nov 2022
- */
-
 public interface UserService {
 
     /**

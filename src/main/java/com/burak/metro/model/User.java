@@ -6,70 +6,44 @@ import com.burak.metro.model.enums.Role;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.burak.metro.model.enums.Role.ADMIN;
-
-/**
- * metro
- * Created by Alexey Burak
- * Nov 2022
- */
+import static lombok.AccessLevel.PRIVATE;
 
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
-public class User extends IdentifiedModel implements UserDetails {
+@FieldDefaults(level = PRIVATE)
+public class User extends IdentifiedModel {
 
     @Column(name = "username")
     @UsernameValid
-    private String username;
+    String username;
     @Column(name = "password")
     @PasswordValid
-    private String password;
+    String password;
     @Column(name = "active")
-    private boolean active;
+    boolean active;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id")
+    )
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+    Set<Role> roles = new HashSet<>();
 
-    public boolean isAdmin() {
-        return roles.contains(ADMIN);
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return active;
-    }
 }

@@ -1,0 +1,15 @@
+server:
+  port: 3000
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    url:
+    username:
+    password:
+  jpa:
+    open-in-view: true
+    show-sql: false
+  web:
+    resources:
+      add-mappings: true

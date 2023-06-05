@@ -6,12 +6,6 @@ import com.burak.metro.annotation.UsernameValid;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * metro
- * Created by Alexey Burak
- * Nov 2022
- */
-
 @Data
 @NoArgsConstructor
 @PasswordMatch

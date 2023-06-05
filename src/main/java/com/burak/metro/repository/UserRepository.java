@@ -2,13 +2,9 @@ package com.burak.metro.repository;
 
 import com.burak.metro.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-/**
- * metro
- * Created by Alexey Burak
- * Nov 2022
- */
-
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 }

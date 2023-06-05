@@ -1,24 +1,28 @@
 package com.burak.metro.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-/**
- * metro
- * Created by Alexey Burak
- * Nov 2022
- */
+import static lombok.AccessLevel.PROTECTED;
 
 @MappedSuperclass
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
+@FieldDefaults(level = PROTECTED)
 public class IdentifiedModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    protected Long id;
+    Long id;
 
 }

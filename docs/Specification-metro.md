@@ -84,13 +84,20 @@
 Для реализации Системы предлагается *следующий стек технологий*:
 
 - *Бэкенд*:
-    - Язык Java 18
-    - Spring Фреймворк
-    - БД MySQL
+    - Язык Java 17
+    - Spring Boot 2.x.x
+    - Hibernate
+    - БД PostgreSQL
+    - Flyway
+    - Docker && Docker-compose
+    - GitHub Actions
+    - Swagger
+    - JUnit 5
+    - Mockito
+    - Lombok
 
 - *Фронтенд*:
-    - HTML
-    - Css
+    - React
 
 # 4. Требования к разработке
 

@@ -1,55 +1,175 @@
 package com.burak.metro.controller;
 
-import com.burak.metro.service.LineServiceImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import com.burak.metro.dto.LineIntervalResponse;
+import com.burak.metro.exception.ApiException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * metro
- * Created by Alexey Burak
- * Nov 2022
- */
-
-@Controller
-@RequiredArgsConstructor
+@Tag(name = "Lines")
 @RequestMapping("/lines")
-public class LineController {
+public interface LineController {
 
-    private final LineServiceImpl lineService;
-
+    @Operation(summary = "Get red line interval")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully get interval",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = LineIntervalResponse.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Bad request",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Line is not found",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Internal Server Error",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    )
+            }
+    )
     @GetMapping("/red")
-    public String redLineInfo(Model model) {
-        String RED_LINE_TITLE = "Aŭtazavadskaja line";
-        model.addAttribute("title", RED_LINE_TITLE);
-        Double redLineCurrentTimeInterval = lineService.getRedLineCurrentTimeInterval();
-        model.addAttribute("time_interval", redLineCurrentTimeInterval);
-        Integer allTimeInterval = lineService.getRedLineByCurrentTime().getFullTimeInterval();
-        model.addAttribute("all_time_interval", allTimeInterval);
-        return "line-info";
-    }
+    ResponseEntity<LineIntervalResponse> redLineInfo();
 
+    @Operation(summary = "Get blue line interval")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully get interval",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = LineIntervalResponse.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Bad request",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Line is not found",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Internal Server Error",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    )
+            }
+    )
     @GetMapping("/blue")
-    public String blueLineInfo(Model model) {
-        String BLUE_LINE_TITLE = "Maskoŭskaja line";
-        model.addAttribute("title", BLUE_LINE_TITLE);
-        Double blueLineCurrentTimeInterval = lineService.getBlueLineCurrentTimeInterval();
-        model.addAttribute("time_interval", blueLineCurrentTimeInterval);
-        Integer allTimeInterval = lineService.getBlueLineByCurrentTime().getFullTimeInterval();
-        model.addAttribute("all_time_interval", allTimeInterval);
-        return "line-info";
-    }
+    ResponseEntity<LineIntervalResponse> blueLineInfo();
 
+    @Operation(summary = "Get green line interval")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully get interval",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = LineIntervalResponse.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Bad request",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Line is not found",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Internal Server Error",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(
+                                                    implementation = ApiException.class
+                                            )
+                                    )
+                            }
+                    )
+            }
+    )
     @GetMapping("/green")
-    public String greenLineInfo(Model model) {
-        String GREEN_LINE_TITLE = "Zielienalužskaja line";
-        model.addAttribute("title", GREEN_LINE_TITLE);
-        Double greenLineCurrentTimeInterval = lineService.getGreenLineCurrentTimeInterval();
-        model.addAttribute("time_interval", greenLineCurrentTimeInterval);
-        Integer allTimeInterval = lineService.getGreenLineByCurrentTime().getFullTimeInterval();
-        model.addAttribute("all_time_interval", allTimeInterval);
-        return "line-info";
-    }
+    ResponseEntity<LineIntervalResponse> greenLineInfo();
+
 }
